@@ -134,7 +134,7 @@ static offset_t dvd_file_seek(void *h, offset_t pos, int whence)
     return pFile->Seek(pos, whence & ~AVSEEK_FORCE);
 }
 
-bool OMXReader::Open(std::string filename, bool dump_format, bool live /* =false */, float timeout /* = 0.0f */, std::string cookie /* = "" */, std::string user_agent /* = "" */)
+bool OMXReader::Open(std::string filename, bool dump_format, bool live /* =false */, float timeout /* = 0.0f */, std::string cookie /* = "" */, std::string user_agent /* = "" */, std::string headers /* = "" */)
 {
   if (!m_dllAvUtil.Load() || !m_dllAvCodec.Load() || !m_dllAvFormat.Load())
     return false;
@@ -195,6 +195,9 @@ bool OMXReader::Open(std::string filename, bool dump_format, bool live /* =false
        if(!user_agent.empty())
        {
           av_dict_set(&d, "user_agent", user_agent.c_str(), 0);
+       }
+       if(!headers.empty()) {
+         av_dict_set(&d, "headers", headers.c_str(), 0);
        }
     }
     CLog::Log(LOGDEBUG, "COMXPlayer::OpenFile - avformat_open_input %s ", m_filename.c_str());
