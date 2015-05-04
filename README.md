@@ -106,7 +106,7 @@ Usage: omxplayer [OPTIONS] [FILE]
         --display n             Set display to output to
         --cookie 'cookie'       Send specified cookie as part of HTTP requests
         --user-agent 'ua'       Send specified User-Agent as part of HTTP requests
-        --headers 'header       Send the specified headers as part of HTTP requests
+        --headers 'header'      Send the specified headers as part of HTTP requests
 
 For example:
 
